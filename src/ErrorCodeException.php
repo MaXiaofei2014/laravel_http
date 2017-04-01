@@ -1,9 +1,9 @@
 <?php
 
-namespace Ckryo\Http;
+namespace Ckryo\Laravel\Http;
 
-use Ckryo\Http\Contracts\ExceptionFactory;
-use Ckryo\Http\Facades\ErrorCode;
+use Ckryo\Laravel\Http\Contracts\ExceptionFactory;
+use Ckryo\Laravel\Http\Facades\ErrorCode;
 
 class ErrorCodeException extends \Exception implements ExceptionFactory
 {

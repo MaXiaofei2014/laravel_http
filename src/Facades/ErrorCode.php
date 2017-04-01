@@ -1,6 +1,6 @@
 <?php
 
-namespace Ckryo\Http\Facades;
+namespace Ckryo\Laravel\Http\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ckryo\Http;
+namespace Ckryo\Laravel\Http;
 
 class ErrorCode
 {

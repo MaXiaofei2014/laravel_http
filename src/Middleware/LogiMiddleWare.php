@@ -6,9 +6,9 @@
  * Time: 下午2:55
  */
 
-namespace Ckryo\Http\Middleware;
+namespace Ckryo\Laravel\Http\Middleware;
 
-use Ckryo\Http\Logi;
+use Ckryo\Laravel\Http\Logi;
 use Closure;
 
 class LogiMiddleWare

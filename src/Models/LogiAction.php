@@ -1,5 +1,5 @@
 <?php
-namespace Ckryo\Http\Models;
+namespace Ckryo\Laravel\Http\Models;
 use Illuminate\Database\Eloquent\Model;
 
 

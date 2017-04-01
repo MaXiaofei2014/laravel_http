@@ -1,9 +1,9 @@
 <?php
 
-namespace Ckryo\Http;
+namespace Ckryo\Laravel\Http;
 
-use Ckryo\Http\Models\LogiAction;
-use Ckryo\Http\Models\LogiIp;
+use Ckryo\Laravel\Http\Models\LogiAction;
+use Ckryo\Laravel\Http\Models\LogiIp;
 
 class Logi
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ckryo\Http;
+namespace Ckryo\Laravel\Http;
 
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\ServiceProvider;

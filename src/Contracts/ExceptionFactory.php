@@ -1,5 +1,5 @@
 <?php
-namespace Ckryo\Http\Contracts;
+namespace Ckryo\Laravel\Http\Contracts;
 
 interface ExceptionFactory {
     /**
