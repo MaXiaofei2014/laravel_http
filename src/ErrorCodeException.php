@@ -14,7 +14,7 @@ class ErrorCodeException extends \Exception implements ExceptionFactory
     public function __construct($code, $message = null, $data = null)
     {
         $this->code = $code;
-        $this->data = $data;
+        $this->data = $data ?: $this;
         $this->message = $message ?: ErrorCode::getErrMsg($code);
     }
 

@@ -3,10 +3,10 @@ namespace Ckryo\Laravel\Http\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Created by PhpStorm.
- * User: liurong
- * Date: 2017/3/27
- * Time: 下午2:34
+ * @method static \Illuminate\Contracts\Auth\Authenticatable|null user();
+ * @method static void ip() IP访问记录;
+ * @method static bool action($user_id, $module, $union_id, $action, $desc = null, $data = null) 操作记录
+ * @method static void login($user_id, $token, $visit = false) 登录记录
  */
 class Logi extends Facade
 {

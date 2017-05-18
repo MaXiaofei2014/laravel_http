@@ -13,29 +13,37 @@ class HttpServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/errorCode.php', config_path('errorCode.php'));
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
 
-        /**
-         * 定义全局 json 方法 -> origin
-         */
-        Response::macro('origin', function ($value) {
-            return Response::make(json_encode($value, JSON_UNESCAPED_UNICODE), 200)
-                ->withHeaders([
-                    'Access-Control-Allow-Credentials' => true,
-                    'Access-Control-Allow-Origin' => '*',
-                    'Content-Type' => 'application/json'
-                ]);
-        });
+        $json_headers = [
+            'Content-Type' => 'application/json'
+        ];
 
-        Response::macro('ok', function ($msg = '操作成功', $data = null) {
+        Response::macro('ok', function ($msg = '操作成功', $data = null) use ($json_headers) {
             return Response::make(json_encode([
                 'errCode' => 0,
                 'errMsg' => $msg,
                 'data' => $data
-            ], JSON_UNESCAPED_UNICODE), 200)
-                ->withHeaders([
-                    'Access-Control-Allow-Credentials' => true,
-                    'Access-Control-Allow-Origin' => '*',
-                    'Content-Type' => 'application/json'
-                ]);
+            ], JSON_UNESCAPED_UNICODE), 200)->withHeaders($json_headers);
+        });
+
+        Response::macro('data', function ($data = null) use ($json_headers) {
+            return Response::make(json_encode([
+                'errCode' => 0,
+                'errMsg' => '操作成功',
+                'data' => $data
+            ], JSON_UNESCAPED_UNICODE), 200)->withHeaders($json_headers);
+        });
+
+        Response::macro('page', function ($result) use ($json_headers) {
+            return Response::make(json_encode([
+                'errCode' => 0,
+                'errMsg' => 'ok',
+                'datas' => $result->items(),
+                'pages' => [
+                    'total' => $result->total(),
+                    'per_page' => $result->perPage(),
+                    'current_page' => $result->currentPage()
+                ]
+            ], JSON_UNESCAPED_UNICODE), 200)->withHeaders($json_headers);
         });
 
         /**

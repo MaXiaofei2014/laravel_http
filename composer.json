@@ -22,6 +22,9 @@
         "Illuminate/database": ">=5.1"
     },
     "autoload": {
+        "files": [
+            "support/helpers"
+        ],
         "psr-4": {
             "Ckryo\\Laravel\\Http\\": "src"
         }
