@@ -8,10 +8,7 @@ use Illuminate\Support\ServiceProvider;
 class HttpServiceProvider extends ServiceProvider
 {
 
-    public function boot (ErrorCode $errorCode) {
-        /// 部署配置
-        $this->mergeConfigFrom(__DIR__.'/../config/errorCode.php', config_path('errorCode.php'));
-        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+    public function boot () {
 
         $json_headers = [
             'Content-Type' => 'application/json'
@@ -38,40 +35,12 @@ class HttpServiceProvider extends ServiceProvider
                 'errCode' => 0,
                 'errMsg' => 'ok',
                 'datas' => $result->items(),
-                'pages' => [
+                'page' => [
                     'total' => $result->total(),
                     'per_page' => $result->perPage(),
                     'current_page' => $result->currentPage()
                 ]
             ], JSON_UNESCAPED_UNICODE), 200)->withHeaders($json_headers);
-        });
-
-        /**
-         * 注册配置文件中的错误码
-         */
-        if (file_exists(config_path('errorCode.php'))) {
-            foreach (config('errorCode') as $model => $codes) {
-                $errorCode->regist($model, $codes);
-            }
-        }
-    }
-
-    public function register()
-    {
-        $this->app->singleton('errorcode', function () {
-            return new ErrorCode();
-        });
-
-        $this->app->bind(ErrorCode::class, function ($app) {
-            return $app->make('errorcode');
-        });
-
-        $this->app->singleton('logi', function ($app) {
-            return new Logi($app);
-        });
-
-        $this->app->bind(Logi::class, function ($app) {
-            return $app->make('logi');
         });
     }
 
